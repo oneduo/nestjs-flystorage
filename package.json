@@ -1,6 +1,6 @@
 {
   "name": "@oneduo/nestjs-flystorage",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "a NestJS module for abstracted, modular and testable storage systems using Flystorage",
   "keywords": [
     "nestjs",
