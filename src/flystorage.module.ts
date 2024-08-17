@@ -14,8 +14,8 @@ export class FlyStorageModule extends ConfigurableModuleClass {
     return {
       global: options.isGlobal,
       module: FlyStorageModule,
-      exports: providers,
       providers,
+      exports: providers,
     };
   }
 

@@ -57,14 +57,8 @@ export default tseslint.config(
       // These on-by-default rules work well for this repo if configured
       "@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
       "n/no-unsupported-features/node-builtins": ["error", { allowExperimental: true }],
-      "perfectionist/sort-objects": [
-        "error",
-        {
-          order: "asc",
-          partitionByComment: true,
-          type: "natural",
-        },
-      ],
+      "perfectionist/sort-objects": "off",
+      "perfectionist/sort-intersection-types": "off",
 
       // Stylistic concerns that don't interfere with Prettier
       "no-useless-rename": "error",
