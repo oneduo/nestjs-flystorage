@@ -1,13 +1,13 @@
 import type { FileStorage } from "@flystorage/file-storage";
 
-export type ConfigModuleOptions = {
-	isGlobal: boolean;
-	disks: Disk[];
-};
+export interface ConfigModuleOptions {
+  disks: Disk[];
+  isGlobal: boolean;
+}
 
-export type Disk = {
-	token: DiskToken;
-	storage: FileStorage;
-};
+export interface Disk {
+  storage: FileStorage;
+  token: DiskToken;
+}
 
-export type DiskToken = string & symbol & {};
+export type DiskToken = string & {} & symbol;
