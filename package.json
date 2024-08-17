@@ -1,0 +1,34 @@
+{
+	"name": "@oneduo/nestjs-flystorage",
+	"version": "0.1.0",
+	"description": "a NestJS module for abstracted, modular and testable storage systems using Flystorage",
+	"main": "index.js",
+	"scripts": {
+		"build": "tsc -p tsconfig.lib.json",
+		"prepublishOnly": "npm run build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/oneduo/nestjs-flystorage.git"
+	},
+	"keywords": ["nestjs", "nest", "storage", "s3", "aws", "fs", "filesystem"],
+	"author": {
+		"email": "charaf@rezrazi.fr",
+		"name": "Charaf Rezrazi",
+		"url": "https://github.com/rezrazi"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/oneduo/nestjs-flystorage/issues"
+	},
+	"homepage": "https://github.com/oneduo/nestjs-flystorage#readme",
+	"devDependencies": {
+		"@biomejs/biome": "1.8.3",
+		"typescript": "^5.5.4"
+	},
+	"peerDependencies": {
+		"@flystorage/file-storage": "^0.1.0",
+		"@nestjs/common": "^8.0.0 || ^9.0.0 || ^10.0.0",
+		"@nestjs/core": "^8.0.0 || ^9.0.0 || ^10.0.0"
+	}
+}
