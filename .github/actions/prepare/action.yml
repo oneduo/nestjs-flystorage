@@ -9,4 +9,5 @@ runs:
         cache: npm
         node-version: "20"
     - run: npm ci
+      shell: bash
   using: composite
