@@ -31,5 +31,79 @@ npm i @oneduo/nestjs-flystorage
 You may start using the module by importing it into your application.
 
 ```typescript
+import { resolve } from 'path';
+import { FileStorage } from '@flystorage/file-storage';
+import { LocalStorageAdapter } from '@flystorage/local-fs';
 
+const rootDirectory = resolve(process.cwd(), 'files');
+const adapter = new LocalStorageAdapter(rootDirectory);
+const storage = new FileStorage(adapter);
+
+const DISK_NAME: DiskToken = 'disks:files';
+
+const disks: Disk[] = [
+  {
+    token: DISK_NAME,
+    storage,
+  },
+]
+
+@Module({
+  imports: [FlyStorageModule.forRoot({
+    isGlobal: true,
+    disks,
+  })],
+  // ...
+})
 ```
+
+And then to inject the storage within your application:
+
+```typescript
+import { InjectStorage } from "@oneduo/nestjs-flystorage";
+
+@Injectable()
+export class AppService {
+  constructor(@InjectStorage(DISK_NAME) storage: FileStorage) {}
+}
+```
+
+### Overriding disk for tests
+
+Let's imagine you're using S3 or any other storage within your application, however you do not wish to implement mocks for your tests.
+As Flystorage exposes a unified API that is adaptable to all supported storages, you can easily override the registered disk to use another adapter, such as the in-memory adapter.
+
+```typescript
+import { FileStorage } from "@flystorage/file-storage";
+import { InMemoryStorageAdapter } from "@flystorage/in-memory";
+
+const adapter = new InMemoryStorageAdapter();
+const storage = new FileStorage(adapter);
+
+describe("AppController", () => {
+  beforeEach(async () => {
+    const app: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
+      providers: [AppService],
+    })
+      // add the following
+      .overrideProvider(DISK_NAME)
+      .useValue(storage)
+      .compile();
+  });
+});
+```
+
+## Credits
+
+- [duna-oss/flystorage](https://github.com/duna-oss/flystorage)
+
+## Authors
+
+- [Charaf Rezrazi](https://www.github.com/rezrazi)
+
+See also the list of contributors who participated in this project.
+
+## License
+
+The MIT License (MIT). Please see [License](https://choosealicense.com/licenses/mit/) File for more information.
