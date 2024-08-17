@@ -1,0 +1,8 @@
+{
+  "overrides": [{ "files": ".nvmrc", "options": { "parser": "yaml" } }],
+  "plugins": ["prettier-plugin-curly", "prettier-plugin-sh", "prettier-plugin-packagejson"],
+  "printWidth": 120,
+  "tabWidth": 2,
+  "semi": true,
+  "trailingComma": "all"
+}

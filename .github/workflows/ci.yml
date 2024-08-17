@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: npm run build
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: npm run lint
+  lint_knip:
+    name: Lint Knip
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: npm run lint:knip
+  lint_markdown:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: npm run lint:md
+  lint_packages:
+    name: Lint Packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: npm run lint:packages
+  lint_spelling:
+    name: Lint Spelling
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: npm run lint:spelling
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: npm run format --list-different
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: npm run run test --coverage
+      - uses: codecov/codecov-action@v3
+  type_check:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/prepare
+      - run: npm run tsc

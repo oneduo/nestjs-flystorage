@@ -1,3 +1,3 @@
-export * from "./types";
-export * from "./flystorage.decorator";
-export * from "./flystorage.module";
+export * from "./types.js";
+export * from "./flystorage.decorator.js";
+export * from "./flystorage.module.js";
