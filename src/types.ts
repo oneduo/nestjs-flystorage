@@ -10,4 +10,4 @@ export interface Disk {
   token: DiskToken;
 }
 
-export type DiskToken = string & {} & symbol;
+export type DiskToken = string | symbol;
